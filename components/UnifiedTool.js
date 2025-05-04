@@ -215,7 +215,7 @@ const UnifiedTool = () => {
           onClick={handleExtractUrls}
           className={`${styles.actionButton} ${recommendedFunction === 'extract' ? styles.recommended : ''}`}
         >
-          提取URL
+          提取URL并生成二维码
           {recommendedFunction === 'extract' && <span className={styles.recommendBadge}>推荐</span>}
         </button>
       </div>

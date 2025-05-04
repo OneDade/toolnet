@@ -5,17 +5,21 @@
   flex: 1;
 }
 
+/* 输入区域样式 */
 .inputArea {
   background-color: #ffffff;
   border-radius: 10px;
-  padding: 1.25rem;
-  margin-bottom: 1.5rem;
+  padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .textInput {
   width: 100%;
-  min-height: 150px;
+  min-height: 120px;
   padding: 0.8rem 1rem;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
@@ -23,7 +27,7 @@
   resize: vertical;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
-  margin-bottom: 1rem;
+  font-family: inherit;
 }
 
 .textInput:focus {
@@ -31,52 +35,58 @@
   box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.15);
 }
 
-.options {
+.actionButtons {
   display: flex;
-  flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 1rem;
 }
 
-.option {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.select {
-  padding: 0.5rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  outline: none;
-}
-
-.select:focus {
-  border-color: #4361ee;
-}
-
-.extractButton {
+.actionButton {
+  flex: 1;
   background-color: #4361ee;
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 0.8rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
   min-height: 48px;
-  width: 100%;
+  position: relative;
 }
 
-.extractButton:hover {
+.actionButton:hover {
   background-color: #3a56d4;
 }
 
-.extractButton:active {
+.actionButton:active {
   transform: translateY(1px);
 }
 
+.recommended {
+  background-color: #3a56d4;
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+.recommendBadge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff4757;
+  color: white;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.errorMessage {
+  color: #e53935;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* 结果区域公共样式 */
 .resultArea {
   background-color: #ffffff;
   border-radius: 10px;
@@ -87,6 +97,106 @@
   flex-direction: column;
 }
 
+.backButton {
+  align-self: flex-start;
+  margin-bottom: 1.25rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #eaeaea;
+}
+
+/* 二维码结果样式 */
+.qrcodeWrapper {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  margin: 0 auto 1.5rem;
+}
+
+.qrheader {
+  text-align: center;
+  margin-bottom: 0.75rem;
+  width: 100%;
+}
+
+.qrtitle {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.qrsubtitle {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.3rem;
+}
+
+.qrcode {
+  margin: 0.5rem 0;
+}
+
+.urlDisplay {
+  margin-top: 0.75rem;
+  width: 100%;
+  text-align: center;
+}
+
+.urlLabel {
+  display: inline-block;
+  color: #e53935;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.urlText {
+  font-size: 0.8rem;
+  color: #666;
+  word-break: break-all;
+}
+
+.downloadButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  min-height: 48px;
+  min-width: 160px;
+  margin: 0 auto;
+}
+
+.downloadButton:hover {
+  background-color: #43a047;
+}
+
+.downloadButton:active {
+  transform: translateY(1px);
+}
+
+/* URL提取结果样式 */
 .resultHeader {
   display: flex;
   flex-wrap: wrap;
@@ -139,6 +249,7 @@
   max-height: 400px;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
+  flex: 1;
 }
 
 .urlItem {
@@ -191,37 +302,26 @@
   cursor: pointer;
   transition: background-color 0.2s;
   min-height: 40px;
+  color: #333;
 }
 
-.actionButton:hover {
-  background-color: #eaeaea;
-}
-
-.backButton {
-  margin-bottom: 1rem;
-  padding: 0.6rem 1.2rem;
+.actions .actionButton {
   background-color: #f5f5f5;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  align-self: flex-start;
+  color: #333;
 }
 
-.backButton:hover {
+.actions .actionButton:hover {
   background-color: #eaeaea;
 }
 
-.qrcodeView, .batchQrcodeView {
+/* 批量二维码样式 */
+.batchQrcodeView {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.qrcodeContainer, .batchQrcodesContainer {
+.batchQrcodesContainer {
   background-color: #ffffff;
   border-radius: 10px;
   padding: 1.5rem;
@@ -278,8 +378,13 @@
   text-overflow: ellipsis;
 }
 
+/* 响应式样式 */
 @media (max-width: 768px) {
   .inputArea, .resultArea, .qrcodeContainer, .batchQrcodesContainer {
+    padding: 1.25rem;
+  }
+  
+  .qrcodeWrapper {
     padding: 1.25rem;
   }
   
@@ -300,7 +405,15 @@
     padding: 1rem;
   }
   
+  .actionButtons {
+    flex-direction: column;
+  }
+  
   .resultArea, .qrcodeContainer, .batchQrcodesContainer {
+    padding: 1rem;
+  }
+  
+  .qrcodeWrapper {
     padding: 1rem;
   }
   
@@ -315,7 +428,7 @@
     justify-content: space-between;
   }
   
-  .actionButton {
+  .actions .actionButton {
     flex: 1;
     text-align: center;
   }
@@ -335,5 +448,9 @@
   
   .miniQrcodeWrapper {
     padding: 0.75rem;
+  }
+  
+  .downloadButton {
+    width: 100%;
   }
 } 

@@ -2,11 +2,17 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
+  flex: 1;
 }
 
 .inputArea {
   width: 100%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 0.5rem;
 }
 
 .inputGroup {
@@ -21,11 +27,12 @@
   border-radius: 4px;
   font-size: 1rem;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .urlInput:focus {
   border-color: #4361ee;
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.15);
 }
 
 .generateButton {
@@ -37,11 +44,16 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.1s;
+  min-height: 48px;
 }
 
 .generateButton:hover {
   background-color: #3a56d4;
+}
+
+.generateButton:active {
+  transform: translateY(1px);
 }
 
 .errorMessage {
@@ -54,7 +66,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  flex: 1;
 }
 
 .qrcodeWrapper {
@@ -73,7 +90,7 @@
 
 .qrheader {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   width: 100%;
 }
 
@@ -121,14 +138,24 @@
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.1s;
+  min-height: 48px;
+  min-width: 160px;
 }
 
 .downloadButton:hover {
   background-color: #43a047;
 }
 
+.downloadButton:active {
+  transform: translateY(1px);
+}
+
 @media (max-width: 600px) {
+  .inputArea {
+    padding: 1rem;
+  }
+  
   .inputGroup {
     flex-direction: column;
   }
@@ -139,5 +166,24 @@
   
   .generateButton {
     padding: 0.8rem;
+    min-height: 52px;
+  }
+  
+  .urlInput {
+    min-height: 52px;
+    font-size: 16px; /* 防止iOS自动缩放 */
+  }
+  
+  .downloadButton {
+    width: 100%;
+    min-height: 52px;
+  }
+  
+  .resultArea {
+    padding: 1.25rem 1rem;
+  }
+  
+  .qrcodeWrapper {
+    max-width: 100%;
   }
 } 

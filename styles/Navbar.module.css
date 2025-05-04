@@ -1,18 +1,16 @@
 .navbar {
-  width: 100%;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.container {
+.navbarContent {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0.8rem 1rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -22,25 +20,35 @@
   gap: 0.75rem;
 }
 
-.logoIcon {
+.logoImage {
   width: 32px;
   height: 32px;
-  color: #4361ee;
 }
 
-.title {
-  font-size: 1.5rem;
+.siteTitle {
+  font-size: 1.25rem;
   font-weight: 600;
   color: #333;
   margin: 0;
 }
 
 @media (max-width: 768px) {
-  .title {
-    font-size: 1.2rem;
+  .navbar {
+    padding: 0.75rem 1.25rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   }
   
-  .logoIcon {
+  .siteTitle {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .logoImage {
     width: 28px;
     height: 28px;
   }

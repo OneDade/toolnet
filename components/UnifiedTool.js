@@ -181,6 +181,95 @@ const UnifiedTool = () => {
     }
   };
   
+  // 处理批量二维码下载
+  const handleBatchDownloadQRCodes = () => {
+    if (selectedUrls.length === 0) return;
+    
+    // 创建一个zip文件，需要动态导入jszip库
+    import('jszip').then(JSZip => {
+      const zip = new JSZip.default();
+      
+      // 为每个URL创建一个Promise来获取二维码图片数据
+      const promises = selectedUrls.map((url, index) => {
+        return new Promise((resolve) => {
+          // 创建临时canvas来生成二维码
+          const canvas = document.createElement('canvas');
+          
+          // 正确使用QRCodeCanvas
+          const qrCodeCanvas = <QRCodeCanvas
+            value={url}
+            size={200}
+            bgColor={"#ffffff"}
+            fgColor={"#000000"}
+            level={"H"}
+            includeMargin={true}
+          />;
+          
+          // 将React元素渲染到DOM中以获取canvas
+          const tempDiv = document.createElement('div');
+          document.body.appendChild(tempDiv);
+          
+          // 使用ReactDOM渲染
+          import('react-dom').then(ReactDOM => {
+            ReactDOM.render(qrCodeCanvas, tempDiv, () => {
+              // 获取渲染后的canvas
+              const renderedCanvas = tempDiv.querySelector('canvas');
+              
+              if (renderedCanvas) {
+                // 将canvas转换为blob
+                renderedCanvas.toBlob((blob) => {
+                  // 完成后移除临时DOM元素
+                  document.body.removeChild(tempDiv);
+                  
+                  if (blob) {
+                    // 为URL生成一个安全的文件名
+                    const filename = `二维码_${index + 1}.png`;
+                    resolve({ blob, filename });
+                  } else {
+                    resolve(null);
+                  }
+                });
+              } else {
+                document.body.removeChild(tempDiv);
+                resolve(null);
+              }
+            });
+          });
+        });
+      });
+      
+      // 等待所有二维码生成完成
+      Promise.all(promises).then(results => {
+        // 过滤掉生成失败的项
+        const validResults = results.filter(result => result !== null);
+        
+        if (validResults.length === 0) {
+          console.error('生成二维码失败');
+          return;
+        }
+        
+        // 将所有二维码添加到zip中
+        validResults.forEach(({ blob, filename }) => {
+          zip.file(filename, blob);
+        });
+        
+        // 生成zip文件并下载
+        zip.generateAsync({ type: 'blob' }).then(content => {
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(content);
+          link.download = '批量二维码.zip';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(link.href);
+        });
+      });
+    }).catch(error => {
+      console.error('加载JSZip库失败:', error);
+      alert('下载功能加载失败，请刷新页面重试');
+    });
+  };
+  
   // 返回列表
   const handleBackToList = () => {
     setShowBatchQrCodes(false);
@@ -345,6 +434,13 @@ const UnifiedTool = () => {
       
       <div className={styles.batchQrcodesContainer}>
         <h3 className={styles.batchTitle}>批量二维码 ({selectedUrls.length}个)</h3>
+        
+        <button 
+          onClick={handleBatchDownloadQRCodes} 
+          className={styles.batchDownloadButton}
+        >
+          批量下载二维码
+        </button>
         
         <div className={styles.qrcodeGrid}>
           {selectedUrls.map((url, index) => (

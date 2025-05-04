@@ -12,6 +12,25 @@ const Navbar = () => {
           </svg>
           <h1 className={styles.siteTitle}>达德工具站</h1>
         </div>
+        
+        <div className={styles.navLinks}>
+          <a 
+            href="http://dade2022.99kami.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className={styles.navLink}
+          >
+            ➡️ 会员购买
+          </a>
+          <a 
+            href="http://dade2017.ugfkw.com/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className={styles.navLink}
+          >
+            ➡️ 瓶盖购买
+          </a>
+        </div>
       </div>
     </nav>
   );

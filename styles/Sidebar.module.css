@@ -1,0 +1,194 @@
+.sidebar {
+  width: 250px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: sticky;
+  top: 1rem;
+}
+
+.sidebarHeader {
+  padding: 1.25rem 1rem 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebarTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.closeMenu {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.sidebarNav {
+  flex: 1;
+  padding: 0.75rem 0;
+  overflow-y: auto;
+}
+
+.toolList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toolItem {
+  margin-bottom: 0.5rem;
+}
+
+.toolItem.disabled {
+  opacity: 0.65;
+}
+
+.toolLink {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  border-radius: 4px;
+}
+
+.toolLink:hover {
+  background-color: #f5f7ff;
+}
+
+.toolIcon {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+  min-width: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.toolName {
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comingSoon {
+  font-size: 0.65rem;
+  background-color: #ffeecc;
+  color: #ff9900;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+  font-weight: normal;
+}
+
+.toolDescription {
+  font-size: 0.75rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebarFooter {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #f0f0f0;
+  font-size: 0.8rem;
+  color: #888;
+  text-align: center;
+}
+
+.sidebarFooterText {
+  margin: 0;
+}
+
+/* 菜单切换按钮样式 */
+.menuToggle {
+  display: none;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.menuIcon {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
+/* 遮罩层 */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+/* 响应式样式 */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    z-index: 999;
+    border-radius: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+  }
+  
+  .sidebar.open {
+    display: flex;
+  }
+  
+  .menuToggle {
+    display: flex;
+  }
+  
+  .closeMenu {
+    display: block;
+  }
+  
+  .overlay {
+    display: block;
+  }
+} 

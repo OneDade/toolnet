@@ -10,6 +10,13 @@ class MyDocument extends Document {
     return (
       <Html lang="zh-CN">
         <Head>
+          {/* Google AdSense */}
+          <script 
+            async 
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7349183125613006"
+            crossOrigin="anonymous"
+          />
+          
           {/* 网站图标 */}
           <link rel="icon" href="/favicon.ico" />
           
